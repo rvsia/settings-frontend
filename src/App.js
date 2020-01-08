@@ -11,12 +11,15 @@ class App extends Component {
 
     componentDidMount () {
         insights.chrome.init();
-        insights.chrome.identifyApp('settings');
+        if (location.pathname.indexOf('applications') !== -1) {
+            insights.chrome.identifyApp('applications');
+        } else {
+            insights.chrome.identifyApp('');
+        }
     }
 
     componentWillUnmount () {
         this.appNav();
-        this.buildNav();
     }
 
     render () {
