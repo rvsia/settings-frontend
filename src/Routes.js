@@ -29,7 +29,7 @@ export const Routes = () => {
     const stableRoutes =
         <Switch>
             <InsightsRoute exact path={ paths.applications } component={ Applications } rootClass='applications'/>
-            <Route render={ () => <Redirect to="/applications/insights" /> } />
+            <Route render={ () => <Redirect to="/rbac" /> } />
         </Switch>;
 
     const betaRoutes =
