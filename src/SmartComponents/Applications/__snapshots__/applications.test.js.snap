@@ -155,12 +155,13 @@ Array [
                 >
                   <button
                     class="pf-c-button pf-m-primary"
-                    type="button"
+                    type="submit"
                   >
                     Submit
                   </button>
                   <button
                     class="pf-c-button pf-m-secondary"
+                    disabled=""
                     type="button"
                   >
                     Reset

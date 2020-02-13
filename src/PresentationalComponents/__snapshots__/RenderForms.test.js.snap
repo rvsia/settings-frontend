@@ -32,7 +32,6 @@ exports[`component should render - multiple schema 1`] = `
               "wizard": [Function],
             }
           }
-          formType="pf3"
           initialValues={Object {}}
           layoutMapper={
             Object {
@@ -44,11 +43,8 @@ exports[`component should render - multiple schema 1`] = `
             }
           }
           onSubmit={[Function]}
-          resetAble={false}
           schema={Object {}}
-          schemaType="default"
           showFormControls={true}
-          uiSchema={Object {}}
         />
       </CardBody>
     </Card>
@@ -81,7 +77,6 @@ exports[`component should render - multiple schema 1`] = `
               "wizard": [Function],
             }
           }
-          formType="pf3"
           initialValues={Object {}}
           layoutMapper={
             Object {
@@ -93,11 +88,8 @@ exports[`component should render - multiple schema 1`] = `
             }
           }
           onSubmit={[Function]}
-          resetAble={false}
           schema={Object {}}
-          schemaType="default"
           showFormControls={true}
-          uiSchema={Object {}}
         />
       </CardBody>
     </Card>
@@ -160,7 +152,6 @@ exports[`component should render - one schema 1`] = `
               "wizard": [Function],
             }
           }
-          formType="pf3"
           initialValues={Object {}}
           layoutMapper={
             Object {
@@ -172,11 +163,8 @@ exports[`component should render - one schema 1`] = `
             }
           }
           onSubmit={[Function]}
-          resetAble={false}
           schema={Object {}}
-          schemaType="default"
           showFormControls={true}
-          uiSchema={Object {}}
         />
       </CardBody>
     </Card>

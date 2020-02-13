@@ -3,7 +3,7 @@ import { render } from 'enzyme';
 import toJson from 'enzyme-to-json';
 import { Provider } from 'react-redux';
 import configureStore from 'redux-mock-store';
-import promiseMiddleware from 'redux-promise-middleware';
+import { createPromise } from 'redux-promise-middleware';
 import { notificationsMiddleware } from '@redhat-cloud-services/frontend-components-notifications';
 import { componentTypes, validatorTypes } from '@data-driven-forms/react-form-renderer';
 import Applications from './Applications';
@@ -53,7 +53,7 @@ init();
 
 describe('Applications', () => {
     beforeEach(() => {
-        mockStore = configureStore([ promiseMiddleware(), notificationsMiddleware() ]);
+        mockStore = configureStore([ createPromise(), notificationsMiddleware() ]);
     });
 
     it('Render applications with no data', () => {
@@ -85,13 +85,13 @@ describe('Applications', () => {
         const wrapper = mount(
             <Provider store={ store }>
                 <Applications appsConfig={ {} } match={ { params: { id: 'testapp' }} } />
-            </Provider>,
+            </Provider>
         );
         const input = wrapper.find('input#email');
         input.getDOMNode().value = 'value';
         input.simulate('change');
         wrapper.update();
-        wrapper.find('.pf-m-primary').simulate('click');
+        wrapper.find('form.pf-c-form').simulate('submit');
         const expectedPayload = [
             expect.anything(),
             expect.objectContaining({
@@ -105,6 +105,7 @@ describe('Applications', () => {
                 }}
             })
         ];
+        wrapper.update();
         expect(store.getActions()).toEqual(expectedPayload);
     });
 });

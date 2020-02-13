@@ -1,4 +1,3 @@
-/*global describe, it, expect*/
 import { getBaseName } from '@redhat-cloud-services/frontend-components-utilities/files/helpers';
 
 describe('getBaseName', () => {
