@@ -99,6 +99,6 @@
     "nightly": "npm run deploy"
   },
   "insights": {
-    "appname": "application-settings"
+    "appname": "applications"
   }
 }
