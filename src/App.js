@@ -12,7 +12,7 @@ class App extends Component {
     componentDidMount () {
         insights.chrome.init();
         if (location.pathname.indexOf('applications') !== -1) {
-            insights.chrome.identifyApp('applications');
+            insights.chrome.identifyApp('application-settings');
         } else {
             insights.chrome.identifyApp('');
         }
