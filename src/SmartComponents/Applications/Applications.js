@@ -43,7 +43,7 @@ const Applications = ({ appsConfig, saveValues, match, getSchema, getConfig, con
                 <RenderForms
                     loaded={ loaded }
                     schemas={ schema }
-                    saveValues={ (values) => saveValues(match.params.id, values, currApp.api) }
+                    saveValues={ (values) => saveValues(match.params.id, values, currApp.api, currApp.title) }
                 />
             </Main>
         </React.Fragment>
@@ -85,7 +85,8 @@ function mapDispatchToProps(dispatch) {
     return {
         getConfig: () => dispatch(getConfig()),
         getSchema: (application, { versions: [ currVersion ] } = { versions: []}) => dispatch(getSchema(application, currVersion)),
-        saveValues: (application, values, { versions: [ currVersion ] } = { versions: []}) => dispatch(saveValues(application, values, currVersion))
+        saveValues: (application, values, { versions: [ currVersion ] } = { versions: []}, appTitle) =>
+            dispatch(saveValues(application, values, currVersion, appTitle))
     };
 }
 

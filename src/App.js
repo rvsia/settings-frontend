@@ -10,12 +10,15 @@ import './App.scss';
 class App extends Component {
 
     componentDidMount () {
+        const { history } = this.props;
         insights.chrome.init();
-        if (location.pathname.indexOf('applications') !== -1) {
-            insights.chrome.identifyApp('applications');
-        } else {
-            insights.chrome.identifyApp('');
-        }
+        insights.chrome.auth.getUser().then((user) => this.setState({ userReady: true, isAdmin: user.identity.user.is_org_admin }));
+        insights.chrome.identifyApp('applications');
+        this.unregister = insights.chrome.on('APP_NAVIGATION', (event) => {
+            if (event.domEvent) {
+                history.push(`/${location.pathname.includes('applications') ? 'applications/' : ''}${event.navId}`);
+            }
+        });
     }
 
     componentWillUnmount () {
