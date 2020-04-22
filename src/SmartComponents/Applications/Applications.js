@@ -25,8 +25,8 @@ const Applications = ({ appsConfig, saveValues, match, getSchema, getConfig, con
     }, []);
 
     useEffect(() => {
-        if (currApp) {
-            getSchema(match.params.id, currApp.api);
+        if (currApp && typeof currApp !== 'string') {
+            getSchema(currApp?.api?.apiName || match.params.id, currApp.api);
         }
     }, [ currApp ]);
     return (
@@ -43,7 +43,7 @@ const Applications = ({ appsConfig, saveValues, match, getSchema, getConfig, con
                 <RenderForms
                     loaded={ loaded }
                     schemas={ schema }
-                    saveValues={ (values) => saveValues(match.params.id, values, currApp.api, currApp.title) }
+                    saveValues={ (values) => saveValues(currApp?.api?.apiName || match.params.id, values, currApp.api, currApp.title) }
                 />
             </Main>
         </React.Fragment>
