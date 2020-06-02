@@ -7,6 +7,7 @@ import { createPromise } from 'redux-promise-middleware';
 import { notificationsMiddleware } from '@redhat-cloud-services/frontend-components-notifications';
 import { componentTypes, validatorTypes } from '@data-driven-forms/react-form-renderer';
 import Applications from './Applications';
+import { act } from 'react-dom/test-utils';
 import { init } from '../../store';
 
 const emptyState = {
@@ -58,9 +59,10 @@ describe('Applications', () => {
 
     it('Render applications with no data', () => {
         const store = mockStore({});
-        const wrapper = render(<Provider store={ store }>
+        const wrapper = mount(<Provider store={ store }>
             <Applications match={ { params: { id: 'testapp' }} }/>
         </Provider>);
+        wrapper.update();
         expect(toJson(wrapper)).toMatchSnapshot();
     });
 
@@ -74,38 +76,47 @@ describe('Applications', () => {
 
     it('Render applications with mockState', () => {
         const store = mockStore(mockState);
-        const wrapper = render(<Provider store={ store }>
+        const wrapper = mount(<Provider store={ store }>
             <Applications match={ { params: { id: 'testapp' }} } />
         </Provider>);
+        wrapper.update();
         expect(toJson(wrapper)).toMatchSnapshot();
     });
 
     it('should emit type-success notification on saving a form', () => {
         const store = mockStore(mockState);
-        const wrapper = mount(
-            <Provider store={ store }>
-                <Applications appsConfig={ {} } match={ { params: { id: 'testapp' }} } />
-            </Provider>
-        );
-        const input = wrapper.find('input#email');
-        input.getDOMNode().value = 'value';
-        input.simulate('change');
-        wrapper.update();
-        wrapper.find('form.pf-c-form').simulate('submit');
-        const expectedPayload = [
-            expect.anything(),
-            expect.objectContaining({
-                meta: { notifications: {
-                    fulfilled: {
-                        description: 'Settings for Red Hat Insights were replaced with new values.',
-                        dismissable: true,
-                        title: 'Application settings saved',
-                        variant: 'success'
-                    }
-                }}
-            })
-        ];
-        wrapper.update();
-        expect(store.getActions()).toEqual(expectedPayload);
+        let wrapper;
+        act(async () => {
+            wrapper = mount(
+                <Provider store={ store }>
+                    <Applications appsConfig={ {} } match={ { params: { id: 'testapp' }} } />
+                </Provider>
+            );
+
+            wrapper.update();
+        });
+        setImmediate(async(done) => {
+            const input = wrapper.find('input#email');
+            input.getDOMNode().value = 'value';
+            input.simulate('change');
+            wrapper.update();
+            wrapper.find('form.pf-c-form').simulate('submit');
+            const expectedPayload = [
+                expect.anything(),
+                expect.objectContaining({
+                    meta: { notifications: {
+                        fulfilled: {
+                            description: 'Settings for Red Hat Insights were replaced with new values.',
+                            dismissable: true,
+                            title: 'Application settings saved',
+                            variant: 'success'
+                        }
+                    }}
+                })
+            ];
+            wrapper.update();
+            expect(store.getActions()).toEqual(expectedPayload);
+            done();
+        });
     });
 });

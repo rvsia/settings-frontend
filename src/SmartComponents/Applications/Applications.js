@@ -1,12 +1,13 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { Skeleton, PageHeader, PageHeaderTitle, Main } from '@redhat-cloud-services/frontend-components';
+import { Skeleton, PageHeader, PageHeaderTitle, Main, NotAuthorized } from '@redhat-cloud-services/frontend-components';
 import { register } from '../../store';
 import reducers  from '../../store/reducers';
 import { notifications } from '@redhat-cloud-services/frontend-components-notifications';
 import { getSchema, saveValues, getConfig } from '../../actions';
 import { RenderForms } from '../../PresentationalComponents';
+import { startCase } from 'lodash';
 
 export const getAppId = ({ params } = {}) => {
     return params && params.id || '';
@@ -15,6 +16,7 @@ export const getAppId = ({ params } = {}) => {
 const Applications = ({ appsConfig, saveValues, match, getSchema, getConfig, configLoaded, loaded, schema }) => {
     const currApp = appsConfig && appsConfig[getAppId(match)] || getAppId(match);
     const appName = ((currApp.frontend && currApp.frontend.title) || currApp.title) || currApp;
+    const [ isOrgAdmin, setIsOrgAdmin ] = useState(false);
 
     useEffect(() => {
         register(reducers);
@@ -22,6 +24,8 @@ const Applications = ({ appsConfig, saveValues, match, getSchema, getConfig, con
         if (!appsConfig) {
             getConfig();
         }
+
+        insights.chrome.auth.getUser().then((user) => setIsOrgAdmin(user.identity.user.is_org_admin));
     }, []);
 
     useEffect(() => {
@@ -29,22 +33,27 @@ const Applications = ({ appsConfig, saveValues, match, getSchema, getConfig, con
             getSchema(currApp?.api?.apiName || match.params.id, currApp.api);
         }
     }, [ currApp ]);
+
     return (
         <React.Fragment>
             <PageHeader>
-                <PageHeaderTitle title='Applications settings'/>
-                {
-                    configLoaded ?
-                        <p>{ `Settings for ${ appName}` }</p> :
-                        <Skeleton size='sm' />
-                }
+                <React.Fragment>
+                    <PageHeaderTitle title={ isOrgAdmin ? 'Applications settings' : startCase(appName) }/>
+                    { isOrgAdmin && (
+                        configLoaded ? <p>{ `Settings for ${startCase(appName)}` }</p> :
+                            <Skeleton size='sm' />
+                    )}
+                </React.Fragment>
             </PageHeader>
             <Main>
-                <RenderForms
-                    loaded={ loaded }
-                    schemas={ schema }
-                    saveValues={ (values) => saveValues(currApp?.api?.apiName || match.params.id, values, currApp.api, currApp.title) }
-                />
+                { isOrgAdmin ?
+                    <RenderForms
+                        loaded={ loaded }
+                        schemas={ schema }
+                        saveValues={ (values) => saveValues(currApp?.api?.apiName || match.params.id, values, currApp.api, currApp.title) }
+                    />
+                    : <NotAuthorized serviceName={ startCase(appName) }></NotAuthorized>
+                }
             </Main>
         </React.Fragment>
     );
