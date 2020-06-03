@@ -113,12 +113,12 @@ exports[`Applications Render applications with mockState 1`] = `
                 "name": "email",
                 "validate": Array [
                   Object {
-                    "type": "required-validator",
+                    "type": "required",
                   },
                 ],
               },
               Object {
-                "component": "switch-field",
+                "component": "switch",
                 "initialValue": false,
                 "label": "Hide Satellite systems",
                 "name": "hideSatelliteSystems",

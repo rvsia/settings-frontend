@@ -10,12 +10,9 @@ exports[`component should render - multiple schema 1`] = `
     <Card>
       <CardBody>
         <FormRenderer
-          buttonClassName=""
-          buttonsLabels={Object {}}
-          canReset={true}
+          FormTemplate={[Function]}
           clearOnUnmount={false}
-          disableSubmit={Array []}
-          formFieldsMapper={
+          componentMapper={
             Object {
               "checkbox": [Function],
               "date-picker": [Function],
@@ -23,29 +20,34 @@ exports[`component should render - multiple schema 1`] = `
               "field-array": [Function],
               "plain-text": [Function],
               "radio": [Function],
+              "select": [Function],
               "select-field": [Function],
+              "slider": [Function],
               "sub-form": [Function],
+              "switch": [Function],
               "switch-field": [Function],
               "tabs": [Function],
               "text-field": [Function],
+              "textarea": [Function],
               "textarea-field": [Function],
               "time-picker": [Function],
               "wizard": [Function],
             }
           }
           initialValues={Object {}}
-          layoutMapper={
-            Object {
-              "Button": [Function],
-              "ButtonGroup": [Function],
-              "Description": [Function],
-              "FormWrapper": [Function],
-              "Title": [Function],
-            }
-          }
           onSubmit={[Function]}
           schema={Object {}}
-          showFormControls={true}
+          validatorMapper={
+            Object {
+              "exact-length-validator": [Function],
+              "max-length-validator": [Function],
+              "min-items-validator": [Function],
+              "min-length-validator": [Function],
+              "pattern-validator": [Function],
+              "required-validator": [Function],
+              "url-validator": [Function],
+            }
+          }
         />
       </CardBody>
     </Card>
@@ -56,12 +58,9 @@ exports[`component should render - multiple schema 1`] = `
     <Card>
       <CardBody>
         <FormRenderer
-          buttonClassName=""
-          buttonsLabels={Object {}}
-          canReset={true}
+          FormTemplate={[Function]}
           clearOnUnmount={false}
-          disableSubmit={Array []}
-          formFieldsMapper={
+          componentMapper={
             Object {
               "checkbox": [Function],
               "date-picker": [Function],
@@ -69,29 +68,34 @@ exports[`component should render - multiple schema 1`] = `
               "field-array": [Function],
               "plain-text": [Function],
               "radio": [Function],
+              "select": [Function],
               "select-field": [Function],
+              "slider": [Function],
               "sub-form": [Function],
+              "switch": [Function],
               "switch-field": [Function],
               "tabs": [Function],
               "text-field": [Function],
+              "textarea": [Function],
               "textarea-field": [Function],
               "time-picker": [Function],
               "wizard": [Function],
             }
           }
           initialValues={Object {}}
-          layoutMapper={
-            Object {
-              "Button": [Function],
-              "ButtonGroup": [Function],
-              "Description": [Function],
-              "FormWrapper": [Function],
-              "Title": [Function],
-            }
-          }
           onSubmit={[Function]}
           schema={Object {}}
-          showFormControls={true}
+          validatorMapper={
+            Object {
+              "exact-length-validator": [Function],
+              "max-length-validator": [Function],
+              "min-items-validator": [Function],
+              "min-length-validator": [Function],
+              "pattern-validator": [Function],
+              "required-validator": [Function],
+              "url-validator": [Function],
+            }
+          }
         />
       </CardBody>
     </Card>
@@ -132,12 +136,9 @@ exports[`component should render - one schema 1`] = `
     <Card>
       <CardBody>
         <FormRenderer
-          buttonClassName=""
-          buttonsLabels={Object {}}
-          canReset={true}
+          FormTemplate={[Function]}
           clearOnUnmount={false}
-          disableSubmit={Array []}
-          formFieldsMapper={
+          componentMapper={
             Object {
               "checkbox": [Function],
               "date-picker": [Function],
@@ -145,29 +146,34 @@ exports[`component should render - one schema 1`] = `
               "field-array": [Function],
               "plain-text": [Function],
               "radio": [Function],
+              "select": [Function],
               "select-field": [Function],
+              "slider": [Function],
               "sub-form": [Function],
+              "switch": [Function],
               "switch-field": [Function],
               "tabs": [Function],
               "text-field": [Function],
+              "textarea": [Function],
               "textarea-field": [Function],
               "time-picker": [Function],
               "wizard": [Function],
             }
           }
           initialValues={Object {}}
-          layoutMapper={
-            Object {
-              "Button": [Function],
-              "ButtonGroup": [Function],
-              "Description": [Function],
-              "FormWrapper": [Function],
-              "Title": [Function],
-            }
-          }
           onSubmit={[Function]}
           schema={Object {}}
-          showFormControls={true}
+          validatorMapper={
+            Object {
+              "exact-length-validator": [Function],
+              "max-length-validator": [Function],
+              "min-items-validator": [Function],
+              "min-length-validator": [Function],
+              "pattern-validator": [Function],
+              "required-validator": [Function],
+              "url-validator": [Function],
+            }
+          }
         />
       </CardBody>
     </Card>
