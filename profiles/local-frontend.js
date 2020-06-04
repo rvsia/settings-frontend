@@ -10,6 +10,7 @@ routes[`/${SECTION}/`]              = { host: `https://localhost:${FRONTEND_PORT
 routes[`/beta/${SECTION}/`]         = { host: `https://localhost:${FRONTEND_PORT}` };
 routes[`/apps/${SECTION}/`]         = { host: `https://localhost:${FRONTEND_PORT}` };
 routes[`/beta/apps/${SECTION}/`]    = { host: `https://localhost:${FRONTEND_PORT}` };
+routes[`/apps/applications/`]       = { host: `https://localhost:${FRONTEND_PORT}` };
 
 apps.forEach((app) => {
     routes[`/beta/${SECTION}/${app}`] = { host: 'PORTAL_BACKEND_MARKER' };

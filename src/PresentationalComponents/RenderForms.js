@@ -1,9 +1,33 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { formFieldsMapper, layoutMapper } from '@data-driven-forms/pf4-component-mapper';
+import FormTemplate from '@data-driven-forms/pf4-component-mapper/dist/cjs/form-template';
+import componentMapper from '@data-driven-forms/pf4-component-mapper/dist/cjs/component-mapper';
 import { Skeleton } from '@redhat-cloud-services/frontend-components';
 import { Stack, StackItem, Card, CardBody } from '@patternfly/react-core';
-import FormRender from '@data-driven-forms/react-form-renderer';
+
+import FormRender from '@data-driven-forms/react-form-renderer/dist/cjs/form-renderer';
+import componentTypes from '@data-driven-forms/react-form-renderer/dist/cjs/component-types';
+import validatorTypes from '@data-driven-forms/react-form-renderer/dist/cjs/validator-types';
+import validatorMapper from '@data-driven-forms/react-form-renderer/dist/cjs/validator-mapper';
+
+const componentMapperExtended = {
+    ...componentMapper,
+    'switch-field': componentMapper[componentTypes.SWITCH],
+    'textarea-field': componentMapper[componentTypes.TEXTAREA],
+    'select-field': componentMapper[componentTypes.SELECT]
+};
+
+const validatorMapperBridge = {
+    'required-validator': validatorMapper[validatorTypes.REQUIRED],
+    'pattern-validator': validatorMapper[validatorTypes.PATTERN],
+    'min-length-validator': validatorMapper[validatorTypes.MIN_LENGTH],
+    'url-validator': validatorMapper[validatorTypes.URL],
+    'max-length-validator': validatorMapper[validatorTypes.MAX_LENGTH],
+    'min-items-validator': validatorMapper[validatorTypes.MIN_ITEMS],
+    'exact-length-validator': validatorMapper[validatorTypes.EXACT_LENGTH]
+};
+
+const FormTemplateWrapper = (props) => <FormTemplate { ...props } canReset />;
 
 const RenderForms = ({ schemas, loaded, saveValues, ...props }) => (
     <Stack { ...props } gutter="md">
@@ -13,11 +37,11 @@ const RenderForms = ({ schemas, loaded, saveValues, ...props }) => (
                     <Card>
                         <CardBody>
                             <FormRender
-                                formFieldsMapper={ formFieldsMapper }
-                                layoutMapper={ layoutMapper }
+                                componentMapper={ componentMapperExtended }
+                                FormTemplate={ FormTemplateWrapper }
                                 schema={ schema }
                                 onSubmit={ saveValues }
-                                canReset
+                                validatorMapper={ validatorMapperBridge }
                             />
                         </CardBody>
                     </Card>
