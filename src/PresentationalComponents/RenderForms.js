@@ -14,7 +14,11 @@ const componentMapperExtended = {
     ...componentMapper,
     'switch-field': componentMapper[componentTypes.SWITCH],
     'textarea-field': componentMapper[componentTypes.TEXTAREA],
-    'select-field': componentMapper[componentTypes.SELECT]
+    'select-field': componentMapper[componentTypes.SELECT],
+    [componentTypes.DUAL_LIST_SELECT]: {
+        component: componentMapper[componentTypes.DUAL_LIST_SELECT],
+        renderStatus: ({ selected, options }) => `${selected} of ${options} selected`
+    }
 };
 
 const validatorMapperBridge = {
