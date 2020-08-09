@@ -1,0 +1,30 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`plain text hack - render 1`] = `
+<Component
+  component="p"
+>
+  hello world 
+  <Component
+    className="pf-u-ml-md"
+    component="a"
+    href="http://github.com"
+    key="link-0"
+    rel="noreferrer noopener"
+    target="_blank"
+  >
+    Read here
+  </Component>
+   and good bye 
+  <Component
+    className="ccc"
+    component="a"
+    href="#"
+    key="link-1"
+    rel="noreferrer noopener"
+    target="_blank"
+  >
+    Learn more
+  </Component>
+</Component>
+`;
