@@ -4,6 +4,7 @@ import FormTemplate from '@data-driven-forms/pf4-component-mapper/dist/cjs/form-
 import componentMapper from '@data-driven-forms/pf4-component-mapper/dist/cjs/component-mapper';
 import { Skeleton } from '@redhat-cloud-services/frontend-components';
 import { Stack, StackItem, Card, CardBody } from '@patternfly/react-core';
+import { PlainTextWithLinks } from './PlainTextWithLinks';
 
 import FormRender from '@data-driven-forms/react-form-renderer/dist/cjs/form-renderer';
 import componentTypes from '@data-driven-forms/react-form-renderer/dist/cjs/component-types';
@@ -15,6 +16,7 @@ const componentMapperExtended = {
     'switch-field': componentMapper[componentTypes.SWITCH],
     'textarea-field': componentMapper[componentTypes.TEXTAREA],
     'select-field': componentMapper[componentTypes.SELECT],
+    'plain-text-with-links': PlainTextWithLinks,
     [componentTypes.DUAL_LIST_SELECT]: {
         component: componentMapper[componentTypes.DUAL_LIST_SELECT],
         renderStatus: ({ selected, options }) => `${selected} of ${options} selected`
