@@ -40,7 +40,7 @@ const Applications = ({ appsConfig, saveValues, match, getSchema, getConfig, con
                 <React.Fragment>
                     <PageHeaderTitle title={ isOrgAdmin ? 'Applications settings' : startCase(appName) }/>
                     { isOrgAdmin && (
-                        configLoaded ? <p>{ `Settings for ${startCase(appName)}` }</p> :
+                        configLoaded ? <p className="pf-u-mt-sm">{ `Settings for ${startCase(appName)}` }</p> :
                             <Skeleton size='sm' />
                     )}
                 </React.Fragment>
