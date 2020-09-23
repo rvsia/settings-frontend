@@ -33,7 +33,7 @@ const validatorMapperBridge = {
     'exact-length-validator': validatorMapper[validatorTypes.EXACT_LENGTH]
 };
 
-const FormTemplateWrapper = (props) => <FormTemplate { ...props } canReset />;
+const FormTemplateWrapper = (props) => <FormTemplate { ...props } submitLabel="Save" canReset />;
 
 const RenderForms = ({ schemas, loaded, saveValues, ...props }) => (
     <Stack { ...props } gutter="md">
