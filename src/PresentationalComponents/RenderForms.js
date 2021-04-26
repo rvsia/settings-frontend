@@ -39,7 +39,7 @@ const FormTemplateWrapper = (props) => (
 );
 
 const RenderForms = ({ schemas, loaded, saveValues, ...props }) => (
-  <Stack {...props} gutter="md">
+  <Stack {...props} hasGutter>
     {loaded ? (
       schemas.map((schema, i) => (
         <StackItem key={`settings-form-${i}`}>
