@@ -11,7 +11,6 @@ const Settings = () => (
     <BrowserRouter basename={getBaseName(window.location.pathname, 1)}>
       <App />
     </BrowserRouter>
-    {console.log('nacti')}
   </Provider>
 );
 
