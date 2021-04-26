@@ -1,15 +1,15 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import FormTemplate from '@data-driven-forms/pf4-component-mapper/dist/cjs/form-template';
-import componentMapper from '@data-driven-forms/pf4-component-mapper/dist/cjs/component-mapper';
-import { Skeleton } from '@redhat-cloud-services/frontend-components';
+import FormTemplate from '@data-driven-forms/pf4-component-mapper/form-template';
+import componentMapper from '@data-driven-forms/pf4-component-mapper/component-mapper';
+import Skeleton from '@redhat-cloud-services/frontend-components/Skeleton';
 import { Stack, StackItem, Card, CardBody } from '@patternfly/react-core';
 import { PlainTextWithLinks } from './PlainTextWithLinks';
 
-import FormRender from '@data-driven-forms/react-form-renderer/dist/cjs/form-renderer';
-import componentTypes from '@data-driven-forms/react-form-renderer/dist/cjs/component-types';
-import validatorTypes from '@data-driven-forms/react-form-renderer/dist/cjs/validator-types';
-import validatorMapper from '@data-driven-forms/react-form-renderer/dist/cjs/validator-mapper';
+import FormRender from '@data-driven-forms/react-form-renderer/form-renderer';
+import componentTypes from '@data-driven-forms/react-form-renderer/component-types';
+import validatorTypes from '@data-driven-forms/react-form-renderer/validator-types';
+import validatorMapper from '@data-driven-forms/react-form-renderer/validator-mapper';
 
 const componentMapperExtended = {
   ...componentMapper,

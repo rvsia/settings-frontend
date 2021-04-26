@@ -4,7 +4,7 @@ import toJson from 'enzyme-to-json';
 import { Provider } from 'react-redux';
 import configureStore from 'redux-mock-store';
 import { createPromise } from 'redux-promise-middleware';
-import { notificationsMiddleware } from '@redhat-cloud-services/frontend-components-notifications';
+import notificationsMiddleware from '@redhat-cloud-services/frontend-components-notifications/notificationsMiddleware';
 import {
   componentTypes,
   validatorTypes,
