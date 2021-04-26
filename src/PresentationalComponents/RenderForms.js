@@ -10,6 +10,7 @@ import FormRender from '@data-driven-forms/react-form-renderer/form-renderer';
 import componentTypes from '@data-driven-forms/react-form-renderer/component-types';
 import validatorTypes from '@data-driven-forms/react-form-renderer/validator-types';
 import validatorMapper from '@data-driven-forms/react-form-renderer/validator-mapper';
+import DualListSortButton from '@data-driven-forms/pf4-component-mapper/dual-list-sort-button';
 
 const componentMapperExtended = {
   ...componentMapper,
@@ -19,8 +20,17 @@ const componentMapperExtended = {
   'plain-text-with-links': PlainTextWithLinks,
   [componentTypes.DUAL_LIST_SELECT]: {
     component: componentMapper[componentTypes.DUAL_LIST_SELECT],
-    renderStatus: ({ selected, options }) =>
-      `${selected} of ${options} selected`,
+    isFilterable: true,
+    isSortable: true,
+    isSearchable: true,
+    resolveProps: (props) => ({
+      ...(props.leftTitle && { availableOptionsTitle: props.leftTitle }),
+      ...(props.rightTitle && { chosenOptionsTitle: props.rightTitle }),
+    }),
+    availableOptionsActions: [
+      <DualListSortButton position="left" key="sort" />,
+    ],
+    chosenOptionsActions: [<DualListSortButton position="right" key="sort" />],
   },
 };
 
