@@ -1,19 +1,19 @@
 import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import {
-  Skeleton,
-  PageHeader,
+import Skeleton from '@redhat-cloud-services/frontend-components/Skeleton';
+import PageHeader, {
   PageHeaderTitle,
-  Main,
-  NotAuthorized,
-} from '@redhat-cloud-services/frontend-components';
+} from '@redhat-cloud-services/frontend-components/PageHeader';
+import Main from '@redhat-cloud-services/frontend-components/Main';
+import NotAuthorized from '@redhat-cloud-services/frontend-components/NotAuthorized';
+
 import { register } from '../../store';
 import reducers from '../../store/reducers';
-import { notifications } from '@redhat-cloud-services/frontend-components-notifications';
+import { notificationsReducer } from '@redhat-cloud-services/frontend-components-notifications/redux';
 import { getSchema, saveValues, getConfig } from '../../actions';
 import { RenderForms } from '../../PresentationalComponents';
-import { startCase } from 'lodash';
+import startCase from 'lodash/startCase';
 
 export const getAppId = ({ params } = {}) => {
   return (params && params.id) || '';
@@ -37,7 +37,7 @@ const Applications = ({
 
   useEffect(() => {
     register(reducers);
-    register({ notifications });
+    register({ notifications: notificationsReducer });
     if (!appsConfig) {
       getConfig();
     }

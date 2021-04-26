@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Skeleton } from '@redhat-cloud-services/frontend-components';
+import Skeleton from '@redhat-cloud-services/frontend-components/Skeleton';
 
 export default function asyncComponent(importComponent) {
   class AsyncComponent extends Component {

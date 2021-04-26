@@ -1,11 +1,11 @@
-import instance from '@redhat-cloud-services/frontend-components-utilities/files/interceptors';
-import { safeLoad } from 'js-yaml';
+import instance from '@redhat-cloud-services/frontend-components-utilities/interceptors';
+import { load } from 'js-yaml';
 
 export const getConfig = async () => {
   const config = await instance.get(
     `${insights.chrome.isBeta() ? '/beta' : ''}/config/main.yml`
   );
-  return safeLoad(config);
+  return load(config);
 };
 
 export const getApplicationSchema = async (application, apiVersion = 'v1') =>
