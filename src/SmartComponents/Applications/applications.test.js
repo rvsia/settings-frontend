@@ -12,6 +12,8 @@ import {
 import Applications from './Applications';
 import { act } from 'react-dom/test-utils';
 import { init } from '../../store';
+import ErrorState from '@redhat-cloud-services/frontend-components/ErrorState';
+import { RenderForms } from '../../PresentationalComponents';
 
 const emptyState = {
   applicationsStore: {
@@ -76,6 +78,18 @@ describe('Applications', () => {
     );
     wrapper.update();
     expect(toJson(wrapper)).toMatchSnapshot();
+  });
+
+  it('Render applications with error', () => {
+    const store = mockStore({ applicationsStore: { error: true } });
+    const wrapper = mount(
+      <Provider store={store}>
+        <Applications match={{ params: { id: 'testapp' } }} />
+      </Provider>
+    );
+    wrapper.update();
+    expect(wrapper.find(ErrorState)).toHaveLength(1);
+    expect(wrapper.find(RenderForms)).toHaveLength(0);
   });
 
   it('Render applications with emptyState', () => {

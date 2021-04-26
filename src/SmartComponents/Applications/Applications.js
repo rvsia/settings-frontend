@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import Skeleton from '@redhat-cloud-services/frontend-components/Skeleton';
+import ErrorState from '@redhat-cloud-services/frontend-components/ErrorState';
 import PageHeader, {
   PageHeaderTitle,
 } from '@redhat-cloud-services/frontend-components/PageHeader';
@@ -28,6 +29,7 @@ const Applications = ({
   configLoaded,
   loaded,
   schema,
+  hasError,
 }) => {
   const currApp =
     (appsConfig && appsConfig[getAppId(match)]) || getAppId(match);
@@ -70,7 +72,7 @@ const Applications = ({
             ))}
         </React.Fragment>
       </PageHeader>
-      {typeof isOrgAdmin === 'boolean' && (
+      {typeof isOrgAdmin === 'boolean' && !hasError && (
         <Main>
           {isOrgAdmin ? (
             <RenderForms
@@ -90,6 +92,7 @@ const Applications = ({
           )}
         </Main>
       )}
+      {hasError && <ErrorState />}
     </React.Fragment>
   );
 };
@@ -114,6 +117,7 @@ Applications.propTypes = {
   saveValues: PropTypes.func,
   getConfig: PropTypes.func,
   schema: PropTypes.arrayOf(PropTypes.object),
+  hasError: PropTypes.bool,
 };
 
 function mapStateToProps({ applicationsStore }) {
@@ -122,6 +126,7 @@ function mapStateToProps({ applicationsStore }) {
     loaded: applicationsStore && applicationsStore.loaded,
     appsConfig: applicationsStore && applicationsStore.appsConfig,
     configLoaded: applicationsStore && applicationsStore.configLoaded,
+    hasError: applicationsStore && applicationsStore.error,
   };
 }
 

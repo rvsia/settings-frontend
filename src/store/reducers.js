@@ -1,7 +1,7 @@
 import { applyReducerHash } from '@redhat-cloud-services/frontend-components-utilities/ReducerRegistry';
 import { ACTION_TYPES } from '../constants';
 
-export const defaultState = { loaded: false, configLoaded: false };
+export const defaultState = { loaded: false, configLoaded: false, error: null };
 
 export const loading = (store) => {
   return {
@@ -27,11 +27,17 @@ export const getConfig = (store, { payload }) => {
   };
 };
 
+export const getSchemaRejected = (store) => ({
+  ...store,
+  error: true,
+});
+
 export default {
   applicationsStore: applyReducerHash(
     {
       [ACTION_TYPES.GET_SCHEMA_FULFILLED]: getSchema,
       [ACTION_TYPES.GET_SCHEMA_PENDING]: loading,
+      [ACTION_TYPES.GET_SCHEMA_REJECTED]: getSchemaRejected,
       [ACTION_TYPES.SAVE_VALUES_FULFILLED]: (store) => ({ ...store }),
       [ACTION_TYPES.GET_CONFIG_PENDING]: (store) => ({
         ...store,

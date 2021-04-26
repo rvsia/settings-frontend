@@ -29,10 +29,6 @@ class App extends Component {
     });
   }
 
-  componentWillUnmount() {
-    this.appNav();
-  }
-
   render() {
     return (
       <React.Fragment>

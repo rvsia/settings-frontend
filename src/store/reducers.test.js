@@ -1,4 +1,10 @@
-import { getSchema, loading, defaultState, getConfig } from './reducers';
+import {
+  getSchema,
+  loading,
+  defaultState,
+  getConfig,
+  getSchemaRejected,
+} from './reducers';
 
 describe('loading', () => {
   it('should return loading: true and empty schema', () => {
@@ -28,6 +34,20 @@ describe('getSchema', () => {
 
 describe('defaultState', () => {
   it('should be loaded: false', () => {
-    expect(defaultState).toEqual({ loaded: false, configLoaded: false });
+    expect(defaultState).toEqual({
+      loaded: false,
+      configLoaded: false,
+      error: null,
+    });
+  });
+});
+
+describe('getSchemaRejected', () => {
+  it('error should be ', () => {
+    expect(getSchemaRejected(defaultState)).toEqual({
+      loaded: false,
+      configLoaded: false,
+      error: true,
+    });
   });
 });
